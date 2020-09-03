@@ -1,0 +1,42 @@
+{
+	"name": "xanitizer-action",
+	"version": "1.0.0",
+	"description": "Setup and run a security analysis by Xanitizer.",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc",
+		"test": "jest",
+		"lint": "tslint -p tsconfig.json",
+		"prepare-release": "jest && ncc build src/xanitizer-action.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/RIGS-IT/xanitizer-action.git"
+	},
+	"keywords": [
+		"xanitizer",
+		"action",
+		"security",
+		"analysis",
+		"security-tools",
+		"vulnerability-detection"
+	],
+	"license": "MIT",
+	"devDependencies": {
+		"@types/jest": "^26.0.10",
+		"@types/node": "^14.6.0",
+		"@vercel/ncc": "^0.23.0",
+		"jest": "^26.4.1",
+		"ts-jest": "^26.2.0",
+		"ts-node": "^8.10.2",
+		"tslint": "^6.1.3",
+		"typescript": "^3.9.7"
+	},
+	"dependencies": {
+		"@actions/core": "^1.2.4",
+		"@actions/exec": "^1.0.4",
+		"@actions/github": "^4.0.0",
+		"@actions/http-client": "^1.0.8",
+		"@actions/tool-cache": "^1.6.0"
+	}
+}
