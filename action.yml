@@ -1,4 +1,4 @@
-name: 'Install and Run a Xanitizer Security Analysis'
+name: 'Xanitizer Security Analysis'
 description: 'GitHub action to download and install Xanitizer, and to run a Xanitizer security analysis in a GitHub workflow.'
 author: 'RIGS IT GmbH'
 inputs:
