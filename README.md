@@ -7,7 +7,7 @@ to automatically detect vulnerabilities in your code by:
 - Running a security analysis with default or with project specific settings.
 - Optionally breaking the build in case of e.g. some finding has a rating that is equal or larger than a defined value.
 - Exporting the detected vulnerabilties as report files
-  which can optionally be archived using the `actions/upload-artifact@v2` action
+  which can optionally be archived using the `actions/upload-artifact` action
   or uploaded via the `github/codeql-action/upload-sarif` action
   into the GitHub code scanning alert section of your repository.
 
@@ -82,6 +82,11 @@ To support this all used libraries have to be installed before running the secur
 
 This action can be run on `ubuntu-latest` and `windows-latest` GitHub Actions runners.
 
+An example workflow which runs a Xanitizer security analysis 
+and then archives the findings list reports 
+and uploads the findings into the GitHub code scanning alert section of your repository
+can be found [here](https://github.com/RIGS-IT/xanitizer-action/blob/master/workflows/xanitizer.yml).
+
 ### Basic
 
 The basic configuration runs a security analysis with the Xanitizer default settings
@@ -89,7 +94,7 @@ and exports a `Xanitizer-Findings-List.pdf` and `Xanitizer-Findings-List.sarif` 
 containing all problematic findings with their details in the root directory of the repository that has been checked out.
 
 ```yaml
-name: "Run Xanitizer Security Analysis"
+name: "Xanitizer Security Analysis"
 
 on:
   # Run the workflow on each push
@@ -101,7 +106,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-xanitizer-security-analysis:
+  xanitizer-security-analysis:
     # Xanitizer runs on ubuntu-latest and windows-latest.
     runs-on: ubuntu-latest
 
