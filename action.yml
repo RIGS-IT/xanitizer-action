@@ -100,7 +100,6 @@ inputs:
     description: 'Boolean flag specifying if an existing config file is to be overwritten.
                   Only relevant if the parameter `rootDirectory` is specified.'
     required: false
-    default: 'true'
 
   # Security analysis settings
   compileToJavaScript:
