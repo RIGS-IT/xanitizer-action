@@ -24,13 +24,13 @@ export abstract class AbstractCmdForProject extends AbstractCmd {
 
 		this.projectName = core.getInput(HeadlessParameters.PROJECT_NAME, { required: false });
 		this.configFileDirectory = core.getInput(HeadlessParameters.CONFIG_FILE_DIRECTORY, { required: false });
+		let hasNoConfigFile: boolean = this.configFile == null || this.configFile.length === 0;
 		this.overwriteConfigFile = this.getBooleanParameter(
-			core.getInput(HeadlessParameters.OVERWRITE_CONFIG_FILE, { required: false }), true);
+			core.getInput(HeadlessParameters.OVERWRITE_CONFIG_FILE, { required: false }), hasNoConfigFile);
 		this.rootDirectory = core.getInput(HeadlessParameters.ROOT_DIRECTORY, { required: false });
 
 		// No configuration file and no root directory set => use checkout path as root directory.
-		if ((this.configFile == null || this.configFile.length === 0)
-			&& (this.rootDirectory == null || this.rootDirectory.length === 0)) {
+		if (hasNoConfigFile && (this.rootDirectory == null || this.rootDirectory.length === 0)) {
 			this.rootDirectory = this.githubCheckoutPath;
 		}
 
