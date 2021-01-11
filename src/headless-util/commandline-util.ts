@@ -211,7 +211,7 @@ export class CmdLineUtil {
 		if (configDir != null && configDir.length > 0) {
 			result.push(HeadlessParameters.CONFIG_FILE_DIRECTORY + "=" + configDir);
 		}
-		if (rootDir != null) {
+		if (rootDir != null && rootDir.length > 0) {
 			result.push(HeadlessParameters.ROOT_DIRECTORY + "=" + rootDir);
 		}
 

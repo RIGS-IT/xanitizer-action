@@ -8426,11 +8426,11 @@ class AbstractCmdForProject extends abstract_cmd_1.AbstractCmd {
         this.projectDataDirectory = core.getInput(headless_parameters_1.HeadlessParameters.PROJECT_DATA_DIRECTORY, { required: false });
         this.projectName = core.getInput(headless_parameters_1.HeadlessParameters.PROJECT_NAME, { required: false });
         this.configFileDirectory = core.getInput(headless_parameters_1.HeadlessParameters.CONFIG_FILE_DIRECTORY, { required: false });
-        this.overwriteConfigFile = this.getBooleanParameter(core.getInput(headless_parameters_1.HeadlessParameters.OVERWRITE_CONFIG_FILE, { required: false }), true);
+        let hasNoConfigFile = this.configFile == null || this.configFile.length === 0;
+        this.overwriteConfigFile = this.getBooleanParameter(core.getInput(headless_parameters_1.HeadlessParameters.OVERWRITE_CONFIG_FILE, { required: false }), hasNoConfigFile);
         this.rootDirectory = core.getInput(headless_parameters_1.HeadlessParameters.ROOT_DIRECTORY, { required: false });
         // No configuration file and no root directory set => use checkout path as root directory.
-        if ((this.configFile == null || this.configFile.length === 0)
-            && (this.rootDirectory == null || this.rootDirectory.length === 0)) {
+        if (hasNoConfigFile && (this.rootDirectory == null || this.rootDirectory.length === 0)) {
             this.rootDirectory = this.githubCheckoutPath;
         }
         // Patch root directory dependent attributes if neccessary.
@@ -9170,7 +9170,7 @@ class CmdLineUtil {
         if (configDir != null && configDir.length > 0) {
             result.push(headless_parameters_1.HeadlessParameters.CONFIG_FILE_DIRECTORY + "=" + configDir);
         }
-        if (rootDir != null) {
+        if (rootDir != null && rootDir.length > 0) {
             result.push(headless_parameters_1.HeadlessParameters.ROOT_DIRECTORY + "=" + rootDir);
         }
         result.push(headless_parameters_1.HeadlessParameters.NO_ANALYSIS + "=true");
